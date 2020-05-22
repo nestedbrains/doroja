@@ -25,9 +25,10 @@ public class DorojaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-
-        roleRepository.save(new Role(1L, ERole.ROLE_USER));
-        roleRepository.save(new Role(2L, ERole.ROLE_ADMIN));
-        roleRepository.save(new Role(3L, ERole.ROLE_MODERATOR));
+        if (roleRepository.findAll().size() == 0) {
+            roleRepository.save(new Role(1L, ERole.ROLE_USER));
+            roleRepository.save(new Role(2L, ERole.ROLE_ADMIN));
+            roleRepository.save(new Role(3L, ERole.ROLE_MODERATOR));
+        }
     }
 }
